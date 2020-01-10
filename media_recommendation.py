@@ -10,6 +10,7 @@ app = Flask(__name__)
 url = 'https://tastedive.com/api/similar?q={movie}' 
 code = 'syd2'
 
+print('hi')
 def store_url(key):
   return f'https://store.ncss.cloud{key}'
 
