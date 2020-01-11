@@ -1,4 +1,3 @@
-#https://chat.ncss.cloud/syd-2-alfred
 from flask import Flask, request, jsonify
 import requests
 import json
@@ -34,7 +33,8 @@ def news():
 
   #Trigger the API with the REQUEST
   response = requests.get(url.format(query=query)).json()
-  #GET the TITLE and AUTHOR from the response
+  #GET the TITLE and AUTHOR from the respons
+
   title = response['articles'][0]['title']
   author = response['articles'][0]['author']
   description = response['articles'][0]['description']
