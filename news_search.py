@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 
 
-url = 'https://newsapi.org/v2/top-headlines?country=au&apiKey=2f722a1876b34f38bfd0fe5558ee006a&q={query}'
+url = 'https://newsapi.org/v2/top-headlines?q={query}&apiKey=2f722a1876b34f38bfd0fe5558ee006a&q'
 
 '''
 def store_url(key):
@@ -38,13 +38,10 @@ def news():
   author = response['articles'][0]['author']
   description = response['articles'][0]['description']
   image_url = response['articles'][0]['urlToImage']
-  if image_url == 'None':
-    image_url = ''
-  if author == 'None':
-    author = ''
+  article_url = response['articles'][0]['url']
 
   #ASSEMBLE the REPLY
-  reply =  f'<p style="font-weight:bold;font-family:times new roman;font-size: 20px">{title},</p> <p style="color:blue;font-family:times new roman">Written by {author} </p> <p><img src="{image_url}" alt="" align="middle" style="width:800px"></p><p style = "font-family:times new roman">{description}</p>' 
+  reply =  f'<p style="font-weight:bold;font-family:times new roman;font-size: 20px"><a href = "{article_url}">{title}</a></p> <p>{news} </p><p style="color:red;font-family:times new roman">Written by {author} </p> <p><img src="{image_url}" alt="" align="middle" style="width:800px"></p><p style = "font-family:times new roman">{description}</p>' 
 
   #GIVE the REPLY back to USER
   return jsonify({
